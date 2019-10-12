@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <style>
+      html {
+        background-color: #00E7FF;
+      }
+      #topdiv {
+        display: flex;
+      }
+      #pic {
+        width: 1050px;
+        height: 250px;
+      }
+      #item {
+        float: right;
+        font-size:22px;
+        width: 100px;
+        height: 30px;
+        background-color: yellow;
+        border-bottom-style: groove;
+        border-bottom-color: coral;
+        border-bottom-width: 7px;
+        border-right-style: none;
+        border-left-style: none;
+        border-top-style: none;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        height: 53px;
+      }
+
+      li {
+        float: left;
+        border-right:1px solid #bbb;
+      }
+
+      li:last-child {
+        border-right: none;
+      }
+
+      li button {
+        display: block;
+        color: blue;
+        text-align: center;
+        padding: 14px 130px;
+        text-decoration: none;
+        font-size: 20px;
+      }
+
+      li button:hover:not(.active) {
+        background-color: red;
+      }
+
+      .active {
+        background-color: #4CAF50;
+      }
+    </style>
+    {% if errormsg %}
+      <div style="color:red; font-size:45px" > {{ errormsg }} </div>
+      <br><br>
+    {% endif %}
+
+    <div id="topdiv">
+      <img id="pic" src="https://petsrus.com.au/uploads/images/_1500x1120_fit_center-center_70_none/pets-in-park-2.jpg"> </img>
+      <form action={{ url_for("profile", username=me) }} method="get" align="right" style="padding-left: 175px">
+        <button id="item"> {{ me }} </button>
+      </form>
+      <form action={{ url_for("logout") }} method="get" align="right">
+        <button id="item"> Logout </button>
+      </form>
+    </div>
+    <ul>
+      <li>
+        <form action="{{ url_for("homepage") }}" method="get">
+          <button class="active"> Home </button>
+        </form>
+      </li>
+      <li>
+        <form action="{{ url_for("forum") }}" method="get">
+          <button> Forum </button>
+        </form>
+      </li>
+      <li>
+        <form action="{{ url_for("blog", name=me) }}" method="get">
+          <button> Blogs by you </button>
+        </form>
+      </li>
+      <li>
+        <form action="{{ url_for("create") }}" method="get">
+          <button> Create new blog </button>
+        </form>
+      </li>
+    </ul>
+
+  </head>
+  <body>
+    <br><br>
+    <h1 style="color:purple"> Home page!! Hi {{ me }} </h1>
+    <p style="font-size: 30px">
+      Hi we are an animal forum, with the aim of trying to save lives. As many owners face difficulties with finding appropriate help on how to care for their pets, we aim to try to create an inclusive forum where users can ask each other for help and people with experience can reply.
+    </p>
+    <br>
+    <p style="font-size: 22px">
+      However there are some features not yet completed due to time contraints. These features include comments and rating.
+    </p>
+  </body>
+</html>

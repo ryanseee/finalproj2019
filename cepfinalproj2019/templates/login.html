@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <style>
+      html {
+        background-color: yellow;
+      }
+      #pic {
+        width: 1050px;
+        height: 250px;
+      }
+    </style>
+    <img id="pic" src="https://petsrus.com.au/uploads/images/_1500x1120_fit_center-center_70_none/pets-in-park-2.jpg"> </img>
+    {% if errormsg %}
+      <div style="color:red; font-size:45px" > {{ errormsg }} </div>
+      <br><br>
+    {% endif %}
+    <h1 style="color:purple"> Hi pls log in to your account </h1>
+  </head>
+  <body>
+    <form action="{{ url_for("login") }}" method="post" >
+      <input type="text" name="username" placeholder="Enter ur username" style="color:blue; font-size:18px">
+      <br><br>
+      <input type="text" name="password" placeholder="Enter ur password" style="color:blue; font-size:18px">
+      <br><br>
+      <button style="color:blue; font-size:22px"> Submit </button>
+    </form>
+    <form action={{ url_for("signup") }} method="get">
+      <button> <div style="color:blue; font-size:22px"> Register </div> </button>
+    </form>
+  </body>
+</html>

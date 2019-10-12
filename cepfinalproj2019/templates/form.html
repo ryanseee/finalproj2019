@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <style>
+      html {
+        background-color: #00E7FF;
+      }
+      #topdiv {
+        display: flex;
+      }
+      #pic {
+        width: 1050px;
+        height: 250px;
+      }
+      #item {
+        float: right;
+        font-size:22px;
+        width: 100px;
+        height: 30px;
+        background-color: yellow;
+        border-bottom-style: groove;
+        border-bottom-color: coral;
+        border-bottom-width: 7px;
+        border-right-style: none;
+        border-left-style: none;
+        border-top-style: none;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        height: 53px;
+      }
+
+      li {
+        float: left;
+        border-right:1px solid #bbb;
+      }
+
+      li:last-child {
+        border-right: none;
+      }
+
+      li button {
+        display: block;
+        color: blue;
+        text-align: center;
+        padding: 14px 130px;
+        text-decoration: none;
+        font-size: 20px;
+      }
+
+      li button:hover:not(.active) {
+        background-color: red;
+      }
+
+      .active {
+        background-color: #4CAF50;
+      }
+    </style>
+    {% if errormsg %}
+      <div style="color:red; font-size:45px" > {{ errormsg }} </div>
+      <br><br>
+    {% endif %}
+
+    <div id="topdiv">
+      <img id="pic" src="https://petsrus.com.au/uploads/images/_1500x1120_fit_center-center_70_none/pets-in-park-2.jpg"> </img>
+      <form action={{ url_for("profile", username=me) }} method="get" align="right" style="padding-left: 175px">
+        <button id="item"> {{ me }} </button>
+      </form>
+      <form action={{ url_for("logout") }} method="get" align="right">
+        <button id="item"> Logout </button>
+      </form>
+    </div>
+    <ul>
+      <li>
+        <form action="{{ url_for("homepage") }}" method="get">
+          <button> Home </button>
+        </form>
+      </li>
+      <li>
+        <form action="{{ url_for("forum") }}" method="get">
+          <button class="active"> Forum </button>
+        </form>
+      </li>
+      <li>
+        <form action="{{ url_for("blog", name=me) }}" method="get">
+          <button> Blogs by you </button>
+        </form>
+      </li>
+      <li>
+        <form action="{{ url_for("create") }}" method="get">
+          <button> Create new blog </button>
+        </form>
+      </li>
+    </ul>
+  </head>
+  <body>
+    {% if errormsg %}
+      <p> {{ errormsg }}</p>
+    {% endif %}
+    <form action="{{ url_for("forum") }}" method="post" align="left">
+      <p style="font-size: 25px"> Fill in some details about the blog u wish to find, if a blog fits <strong> either </strong> criteria, the blog will be shown.  </p>
+      <p style="font-size: 25px"> (If a criteria is left blank, then it would not be utilised in the selection of blogs) </p>
+      <input style="width: 270px; height: 35px" type="text" name="tosearch" placeholder="Type substring of the blog u want to find here" style="color:blue; font-size:18px"> </input>
+      <input style="width: 300px; height: 35px" type="text" name="tags" placeholder="Type the name of the animal u wish to find similar blogs about" style="color:blue; font-size:18px"> </input>
+      <button> <div style="color:blue; font-size:18px; "> Submit </div> </button>
+    </form>
+
+    <form action="{{ url_for("forum") }}" method="post" align="left">
+      <button name="rating" style="color:purple; font-size:18px" > Click to display all blogs in decreasing order of blog rating </button>
+    </form>
+    <form action="{{ url_for("forum") }}" method="post" align="left">
+      <button name="recent" style="color:green; font-size:18px" > Click to display all recent blogs(by order of time) </button>
+    </form>
+    {% if noresult %}
+      <p> No blog matching ur search preference was found </p>
+    {% endif %}
+    {% if blogs %}
+      {% for blog in blogs %}
+        <br><br>
+        <p style="font-size: 20px; color: #421BDF"> <strong> Title: {{ blog[5] }}, by user: {{ blog[2] }} </strong> </p>
+        <form action="{{ url_for("blogpage", blogid=blog[4]) }}" method="get" align="left">
+          <button style="color:red; font-size:15px"> Click to view content of this ^^ blog </button>
+        </form>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>
