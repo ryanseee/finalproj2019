@@ -1,6 +1,6 @@
-Database_url: postgres://wpgbvssvitxlbo:8b9b80b9e1bc3a0f02d08709132aea152fbb8669dfe630e519716da5cc41a346@ec2-79-125-4-72.eu-west-1.compute.amazonaws.com:5432/d1jcss8rl8tocd
+A video of my website can be found in the attachments(the screen record one).
 
-A video of my website can be found above too.
+Database_url: postgres://wpgbvssvitxlbo:8b9b80b9e1bc3a0f02d08709132aea152fbb8669dfe630e519716da5cc41a346@ec2-79-125-4-72.eu-west-1.compute.amazonaws.com:5432/d1jcss8rl8tocd
 
 # Documentation:
 
